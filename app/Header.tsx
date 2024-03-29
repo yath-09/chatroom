@@ -22,7 +22,7 @@ function DropDownMenu() {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button variant={"outline"} className="my-auto">
+                <Button variant={"link"} className="my-auto">
                     <Avatar className="mr-2">
                         <AvatarImage src={session.data?.user.image ?? ""} />
                         <AvatarFallback>CN</AvatarFallback>
