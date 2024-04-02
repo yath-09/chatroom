@@ -15,10 +15,10 @@ import { ModeToggle } from "@/components/mode-toggle";
 import { LogInIcon, LogOutIcon } from "lucide-react";
 import Image from "next/image"
 import Link from "next/link";
+import { link } from "fs";
 
 function DropDownMenu() {
     const session = useSession();
-    const isLoggedIn = session;
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -32,13 +32,15 @@ function DropDownMenu() {
             <DropdownMenuContent>
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={() => signIn()}><LogInIcon className="mr-2" />Sign In</DropdownMenuItem>
-                {isLoggedIn ? (
-                    <DropdownMenuItem onClick={() => signOut()}><LogOutIcon className="mr-2" />Sign Out</DropdownMenuItem>
-                ) : (
-                    <DropdownMenuItem onClick={() => signIn()}><LogInIcon className="mr-2" />Sign In</DropdownMenuItem>
-                )}
-            </DropdownMenuContent>
+                <DropdownMenuItem
+                    onClick={() =>
+                        signOut(
+                            {
+                                callbackUrl: "/"
+                            }
+                        )}>
+                    <LogOutIcon className="mr-2" />Sign Out</DropdownMenuItem>
+                </DropdownMenuContent>
         </DropdownMenu>
     )
 
@@ -61,8 +63,18 @@ export function Header() {
                   DevRoom
                 </Link>
                 <div className="flex gap-4 items-center">
-                <DropDownMenu />
-                <ModeToggle />
+                   {session.data && <DropDownMenu/>}
+                   {!session.data && (
+                     <Button
+                        onClick={
+                            ()=>signIn()
+                        }  
+                        variant={"link"}
+                    >
+                        <LogInIcon className="mr-2"/> Sign In
+                     </Button>
+                   )}
+                    <ModeToggle />
                 </div>
             </div>
         </header>
