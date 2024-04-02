@@ -1,11 +1,14 @@
 import { db } from "@/db";
 import { room } from "@/db/schema";
-import { eq } from "drizzle-orm";
+import { eq, like } from "drizzle-orm";
 import { unstable_noStore } from "next/cache";
 // prevemt the first call of db from the static loading of th epage 
-export  async function getRooms(){
+export  async function getRooms(search:string | undefined){
     unstable_noStore(); // making the route dynamic 
-    const rooms=await db.query.room.findMany();
+    const where=search ? like(room.tags,`%${search}%`):undefined
+    const rooms=await db.query.room.findMany({
+        where,
+    });
     return rooms;
 }
 
