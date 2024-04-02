@@ -2,6 +2,7 @@ import { getRoom } from "@/data-access/rooms";
 import { GithubIcon} from "lucide-react"
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link"
+import { DevRoomVideo } from "./video-player";
 
 
 export default async function RoomPage(props: { params: { roomId: string } }) {
@@ -15,7 +16,7 @@ export default async function RoomPage(props: { params: { roomId: string } }) {
         <div className="min-h-screen grid grid-cols-4 text-black">
             <div className="col-span-3 p-5">
                 <div className="rounded-lg border bg-card text-card-foreground shadow-sm p-8">
-                    Video player
+                    <DevRoomVideo room={room}/>
                 </div>
             </div>
             <div className="col-span-1  p-5">

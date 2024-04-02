@@ -18,7 +18,7 @@ import Link from "next/link";
 
 function DropDownMenu() {
     const session = useSession();
-    const isLoggedIn = !!session;
+    const isLoggedIn = session;
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -32,6 +32,7 @@ function DropDownMenu() {
             <DropdownMenuContent>
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={() => signIn()}><LogInIcon className="mr-2" />Sign In</DropdownMenuItem>
                 {isLoggedIn ? (
                     <DropdownMenuItem onClick={() => signOut()}><LogOutIcon className="mr-2" />Sign Out</DropdownMenuItem>
                 ) : (
