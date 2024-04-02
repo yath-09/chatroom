@@ -13,7 +13,7 @@ import {
     FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-
+import { useEffect } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { SearchIcon } from "lucide-react"
 
@@ -33,6 +33,11 @@ export function SearchBar() {
             search: query.get("search") ?? "",
         },
     })
+    const search = query.get("search");
+
+  useEffect(() => {
+    form.setValue("search", search ?? "");
+  }, [search, form]);
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
         if (values.search) router.push(`/?search=${values.search}`)

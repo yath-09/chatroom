@@ -11,6 +11,7 @@ import { Room } from "@/db/schema"
 import { GithubIcon} from "lucide-react"
 import Link from "next/link"
 import { Button } from "./ui/button"
+import { TagsList } from "./Badge"
 const RoomCard = ({room}:{room:Room}) => {
     const tags=room.tags.split(",").map((tag)=>tag.trim())
     return (
@@ -30,11 +31,9 @@ const RoomCard = ({room}:{room:Room}) => {
                 GitHub Project
               </Link>)
               }
-               <div className="flex gap-2 flex-wrap mb-4">
-                    {tags.map((lang)=>(
-                        <Badge className="w-fit" key={lang}>{lang}</Badge>
-                    ))}
-                </div> 
+               
+            <TagsList tags={tags}/>
+               
             </CardContent>
             <CardFooter>
                 <Button asChild><Link href={`/rooms/${room.id}`}>Join room</Link></Button>
