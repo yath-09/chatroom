@@ -62,6 +62,8 @@ export function Header() {
                    />   
                   DevRoom
                 </Link>
+                <nav><Link href="/your-rooms" className="hover:underline">Your Rooms</Link></nav>
+
                 <div className="flex gap-4 items-center">
                    {session.data && <DropDownMenu/>}
                    {!session.data && (

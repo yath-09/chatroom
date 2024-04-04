@@ -6,7 +6,6 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-import { Badge } from "./ui/badge" 
 import { Room } from "@/db/schema"
 import { GithubIcon} from "lucide-react"
 import Link from "next/link"
