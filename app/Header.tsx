@@ -19,6 +19,7 @@ import { link } from "fs";
 
 function DropDownMenu() {
     const session = useSession();
+    
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -49,6 +50,7 @@ function DropDownMenu() {
 
 export function Header() {
     const session = useSession();
+    const isLoggedIn=!!session.data
     return (
         <header className="container mx-auto dark:bg-gray-800 py-3 bg-gray-300" >
             <div className="flex justify-between items-center">
@@ -62,10 +64,12 @@ export function Header() {
                    />   
                   DevRoom
                 </Link>
+                {isLoggedIn &&  
                 <nav><Link href="/your-rooms" className="hover:underline">Your Rooms</Link></nav>
-
+                }
+               
                 <div className="flex gap-4 items-center">
-                   {session.data && <DropDownMenu/>}
+                   {isLoggedIn && <DropDownMenu/>}
                    {!session.data && (
                      <Button
                         onClick={

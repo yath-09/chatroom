@@ -14,7 +14,7 @@ import {
 import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 import { generateTokenAction } from "./actions";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 const apiKey = process.env.NEXT_PUBLIC_GET_STREAM_API_KEY!;
 
@@ -24,6 +24,7 @@ export const DevRoomVideo = ({room}:{room:Room}) => {
     const [client,setClient]=useState<StreamVideoClient | null>(null);
     const [call,setCall]=useState<Call | null>(null);
     const router=useRouter();
+
     useEffect(() => {
         if(!room) return;
         if(!session.data) return;
