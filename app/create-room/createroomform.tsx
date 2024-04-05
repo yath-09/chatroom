@@ -15,7 +15,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { createRoomAction } from "./actions"
 import { useRouter } from "next/navigation"
-import { toast, useToast } from "@/components/ui/use-toast"
+import { useToast } from "@/components/ui/use-toast"
 
 
 
@@ -37,7 +37,7 @@ export function CreateRoomForm(){
             tags:"",
         },
   })
-  
+  const {toast}=useToast()
   async function onSubmit(values: z.infer<typeof formSchema>) {
         //Todo :invoke the server to add info to dtabase
         await createRoomAction(values);
