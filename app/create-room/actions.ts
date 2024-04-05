@@ -13,5 +13,5 @@ export async function createRoomAction(roomData:Omit<Room,"userId" |"id">) {
 
 
     await db.insert(room).values({...roomData,userId:session?.user.id});
-    revalidatePath("/")// to remove the cache for any path that occurs after new entries to the database
+    revalidatePath("/browse")// to remove the cache for any path that occurs after new entries to the database
 }

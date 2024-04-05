@@ -5,9 +5,10 @@ import { getRooms } from "@/data-access/rooms";
 import Link from "next/link";
 
 
-export default async function Home({searchParams,}:{searchParmas:{
+export default async function Home({searchParams}:{searchParams:{
   search:string
-}}) {
+}}) 
+{
   const rooms = await getRooms(searchParams.search);
   return (
     <main className=" min-h-screen  p-16">
@@ -18,7 +19,7 @@ export default async function Home({searchParams,}:{searchParmas:{
         </Button>
       </div>
       <div className="mb-12">
-      <SearchBar/>
+        <SearchBar/>
       </div>
       
 
