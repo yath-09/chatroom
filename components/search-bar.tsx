@@ -19,7 +19,7 @@ import { SearchIcon } from "lucide-react"
 
 
 const formSchema = z.object({
-    search: z.string().min(1).max(50),
+    search: z.string().min(0).max(50),
 })
 
 

@@ -15,16 +15,16 @@ import {
 import { Input } from "@/components/ui/input"
 import { createRoomAction } from "./actions"
 import { useRouter } from "next/navigation"
+import { toast, useToast } from "@/components/ui/use-toast"
+
 
 
 const formSchema = z.object({
   name: z.string().min(1).max(50),
   description:z.string().min(10).max(200),
   githubRepo:z.string().min(1).max(50),
-  tags:z.string().min(1).max(50),
+  tags:z.string().min(0).max(50),
 })
-
-
 
 export function CreateRoomForm(){
   const router=useRouter()
@@ -37,11 +37,15 @@ export function CreateRoomForm(){
             tags:"",
         },
   })
-
+  
   async function onSubmit(values: z.infer<typeof formSchema>) {
         //Todo :invoke the server to add info to dtabase
         await createRoomAction(values);
-        router.push("/")
+        toast({
+          title:"Your room was created",
+          description:"Your room was created",
+        })
+        router.push("/your-rooms")
     }
     return (
       <div>

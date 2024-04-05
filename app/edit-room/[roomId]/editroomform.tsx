@@ -16,6 +16,7 @@ import { Input } from "@/components/ui/input"
 import { editRoomAction } from "./actions"
 import { useParams, useRouter } from "next/navigation"
 import { Room } from "@/db/schema"
+import { toast } from "@/components/ui/use-toast"
 
 
 const formSchema = z.object({
@@ -42,7 +43,11 @@ export function EditRoomForm({room}:{room:Room}){
   async function onSubmit(values: z.infer<typeof formSchema>) {
     //Todo :invoke the server to add info to dtabase
     await editRoomAction({ id: params.roomId as string, ...values });
-    router.push("/browse")
+    toast({
+      title:"Your room was edited",
+      description:"Your room was edited",
+    })
+    router.push("/your-rooms")
   }
   return (
     <div>
