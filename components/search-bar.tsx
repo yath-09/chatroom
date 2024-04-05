@@ -40,7 +40,7 @@ export function SearchBar() {
   }, [search, form]);
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
-        if (values.search) router.push(`/?search=${values.search}`)
+        if (values.search) router.push(`/browse/?search=${values.search}`)
         else router.push("/")
     }
     return (

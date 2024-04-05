@@ -10,7 +10,7 @@ import {
     CardTitle,
 } from "@/components/ui/card"
 import { Room } from "@/db/schema"
-import { GithubIcon, TrashIcon } from "lucide-react"
+import { GithubIcon, PencilIcon, TrashIcon } from "lucide-react"
 import Link from "next/link"
 import {
     AlertDialog,
@@ -29,7 +29,12 @@ const RoomCard = ({ room }: { room: Room }) => {
     const tags = room.tags.split(",").map((tag) => tag.trim())
     return (
         <Card>
-            <CardHeader>
+            <CardHeader className="relative">
+                <Button className="absolute top-1 right-1" size="icon">
+                 <Link href={`/edit-room/${room.id}`}>
+                    <PencilIcon/>
+                </Link>
+                </Button>
                 <CardTitle>{room.name}</CardTitle>
                 <CardDescription>{room.description}</CardDescription>
             </CardHeader>
